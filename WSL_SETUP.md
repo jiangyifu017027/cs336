@@ -76,12 +76,16 @@ WSL 磁盘在 D 盘，还有 ~560GB 可用，放 FineWeb / checkpoint 都够。
 
 ```bash
 rsync -a --delete \
+  --exclude '.git/' \
   --exclude '.venv/' --exclude 'data/' --exclude 'local-shared-data/' \
   --exclude '__pycache__/' --exclude '.pytest_cache/' --exclude '.setup/' \
   ~/cs336/ /mnt/d/CS336/
 ```
 
-（`--exclude data/` 是因为 Windows 副本里已有那 14GB，不必来回拷。）
+（`--exclude data/` 是因为 Windows 副本里已有那 14GB，不必来回拷。
+`--exclude '.git/'` 是因为 `/mnt/d` 是 drvfs 挂载、所有文件强制 777，
+带 `.git` 会让每个文件都显示权限变更；D 盘只做纯文件副本，
+历史由 GitHub origin 与 bundle 快照保管。）
 
 ## A2 (systems) 起步时要注意
 

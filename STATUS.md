@@ -139,8 +139,9 @@ uv run pytest tests/ -q
 ## 备份
 
 ```bash
-# 代码/笔记/资料同步到 D 盘工作副本（数据目录不重复搬）
+# 代码/笔记/资料同步到 D 盘工作副本（数据目录不重复搬；.git 不同步，D 盘是纯文件副本）
 rsync -a --delete \
+  --exclude '.git/' \
   --exclude '.venv/' --exclude 'data/' --exclude 'local-shared-data/' \
   --exclude '__pycache__/' --exclude '.pytest_cache/' \
   ~/cs336/ /mnt/d/CS336/
