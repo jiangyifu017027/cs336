@@ -7,6 +7,7 @@ description: 管理 CS336 的学习开始、结束、主动回忆、间隔复习
 
 ## 档案位置
 
+- `../../../learning/plan.md`：总体学习计划（个人时间约束、阶段路线图、每周节奏模板）。开始一次学习时用它确认“今天该做什么”。
 - `../../../learning/progress.md`：当前位置、讲次/作业状态和下一步。
 - `../../../learning/questions.md`：未解决问题及状态。
 - `../../../learning/vocabulary.md`：实际遇到的英文术语。
