@@ -145,9 +145,20 @@ rsync -a --delete \
   --exclude '__pycache__/' --exclude '.pytest_cache/' \
   ~/cs336/ /mnt/d/CS336/
 
-# git 备份（bare repo）
-git push backup
+# git 推送到 GitHub 私有仓库
+git push
 ```
 
 > `D:\CS336` 是 Windows 侧备份；`~/cs336` 是主工作副本。
 > 大数据（A1 data、A4 local-shared-data）不进 git，但已 rsync 到 D。
+
+远端（2026-11-22 重建）：
+
+| remote | 地址 | 说明 |
+|---|---|---|
+| `origin` | `https://github.com/jiangyifu017027/cs336.git` | GitHub **私有**仓库，267 作业文件 + learning 笔记 |
+
+- 入库内容：`assignments/`、`learning/`、`scripts/`、`.agents/`、顶层文档，共 287 文件 / 83M。
+- 不入库：数据集与虚拟环境（40G），以及 `resources/`、`lectures/` 课程材料（`.gitignore` 排除，仅本地与 D 盘保留）。
+- 旧历史已废弃；改动前的完整快照：`/mnt/d/cs336-snapshots/cs336-20261122-2223.bundle`（可用 `git clone` 直接恢复）。
+- 凭证由 VS Code 提供（`GIT_ASKPASS`），无需在仓库里保存 token。
