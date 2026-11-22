@@ -1,0 +1,25 @@
+# ---- Python / 工具 ----
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# ---- 数据与大文件（按作业自行下载，不入库） ----
+data/
+wheels/
+*.vhdx
+# 讲义里 trace-viewer 的 profiler 中间产物（可重新生成）
+*.sqlite
+
+# ---- 课程材料（仅保留在本地与 D 盘，不入库、不公开分发）----
+resources/
+lectures/
+
+# ---- 本地 / 系统 ----
+.setup/
+*.log
+.DS_Store
+Thumbs.db
