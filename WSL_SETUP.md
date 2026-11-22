@@ -104,43 +104,51 @@ export UV_DEFAULT_INDEX=https://mirrors.aliyun.com/pypi/simple
 
 ## Git 版本管理
 
-已做一次初始提交，把官方课程材料（1034 个文件 / 252MB）作为基线：
+2026-11-22 重建过仓库：旧历史已废弃，当前从 1 个干净的初始提交开始。
 
 ```bash
 cd ~/cs336
-git log --oneline          # 基线提交
+git log --oneline          # 查看提交历史
 git status                 # 你写的代码会显示为 modified
 git diff cs336_basics/     # 看自己改了什么
 git add -A && git commit -m "feat(a1): BPE tokenizer"
+git push                   # 推到 GitHub
 ```
 
-分支是 `master`；提交身份是本仓库本地配置（`few <few@localhost>`），想改：
+分支是 `main`；提交身份是本仓库本地配置
+（`jiangyifu017027 <108881497+jiangyifu017027@users.noreply.github.com>`），想改：
 
 ```bash
 git config user.name "你的名字"
 git config user.email "you@example.com"
 ```
 
-**不入库的内容**（`.gitignore`，共约 14GB）：`data/`（训练语料）、`.venv/`、`wheels/`、`*.sqlite`（讲义的 profiler 中间产物）、`.setup/`。
+**不入库的内容**（`.gitignore`，共约 41GB）：
+- `data/`、`local-shared-data/`（训练语料/离线资产）、`.venv/`、`wheels/`、`.setup/`、`*.sqlite`
+- `resources/`、`lectures/`（讲义与论文 PDF，仅本地保留，避免公开分发课程材料）
+
 测试快照 `tests/_snapshots/*.npz` 和 `tests/fixtures/*` 是**要**入库的（测试依赖它们）。
 
-### 备份到 D 盘（已配置）
+### 备份
 
-`D:\CS336-backup.git` 是一个裸仓库（bare repo），`master` 已跟踪它：推一次改动只要
-
-```bash
-git push backup           # 或 git push（因为已设置 upstream）
-```
-
-从备份恢复（万一 WSL 磁盘坏了）：
+| 位置 | 内容 | 用途 |
+|---|---|---|
+| GitHub `origin`（**私有**） | 287 文件 / 83M，含作业代码、学习档案、文档 | 异地备份 + 多机同步 |
+| `D:\CS336\` | 整仓工作副本（含数据、虚拟环境） | Windows 侧冗余 |
+| `/mnt/d/cs336-snapshots/*.bundle` | 重建前的完整 git 历史 | 一次性快照兜底 |
 
 ```bash
-git clone /mnt/d/CS336-backup.git ~/cs336-new    # 拿到全部代码与历史
-# 数据语料不在 git 里，需要另行下载（见 A1 handout / README）
+git push      # 推 GitHub（凭证由 VS Code 提供）
 ```
 
-注意：`D:\CS336-backup.git` 只存**代码/材料与历史**（约 280MB）；
-A1 的 14GB 语料 + A4 的约 3GB offline 资产仍在 `D:\CS336\...` 下（不进 git）。
+从快照恢复：
+
+```bash
+git clone /mnt/d/cs336-snapshots/cs336-20261122-2223.bundle ~/cs336-old
+```
+
+注意：git 里**不含** 41GB 数据与课程材料；A1 的 14GB 语料、A4 的约 3GB offline 资产
+需另行下载（见 A1 handout / README），或从 `D:\CS336\` 拷回。
 
 ## 排错
 
