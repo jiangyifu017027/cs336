@@ -8,7 +8,7 @@
 
 ## AI 中文学习助教（已配置）
 
-本仓库已配置中文学习、英文伴读、作业诊断和复盘进度四个本地 skills。首次使用或修改配置后，在 Pi 中执行 `/reload`，然后可以直接说：
+本仓库已配置中文学习、英文伴读、作业诊断和复盘进度四个本地 skills。首次使用或修改配置后，在 Kimi Code CLI 中执行 `/reload`，然后可以直接说：
 
 - “从第 1 讲开始，用中文带我学习”
 - “帮我读懂 A1 handout 这一部分，不要给实现答案”
@@ -34,11 +34,9 @@ CS336/
 │   └── a5-alignment/assignment5-alignment/ # A5: GRPO/推理 RL，选做 SFT + DPO + 安全对齐
 ├── resources/
 │   ├── spring2025-lectures/   # 全部讲义（PDF + 可执行幻灯片 + trace）
-│   ├── papers/                # 课程推荐论文（PDF 离线缓存 + README 索引）
-│   └── cheatsheets/           # PyTorch / Triton / 分布式 / Profiling 速查
+│   └── papers/                # 课程推荐论文（PDF 离线缓存 + README 索引）
 ├── scripts/                   # 环境安装/检查、讲义本地服务器
-├── STATUS.md                  # 环境、数据、资料的现状与缺口
-└── scratch/                   # 随堂练习、草稿实验（随便折腾，不进正式作业）
+└── STATUS.md                  # 环境、数据、资料的现状与缺口
 ```
 
 ## 环境与资料状态
@@ -48,7 +46,6 @@ CS336/
 - 本机现状与缺口：见 [STATUS.md](STATUS.md)
 - 讲义索引与笔记模板：[lectures/README.md](lectures/README.md)
 - 论文库（离线 PDF）：[resources/papers/README.md](resources/papers/README.md)
-- 速查表：[resources/cheatsheets/README.md](resources/cheatsheets/README.md)
 
 本地看可执行讲义：
 
@@ -64,7 +61,7 @@ CS336/
 - 版本：讲义索引与 A1 为 Spring 2025；本地 A2–A5 已更新为 Spring 2026。作业内容以各仓库内的 handout PDF、公开测试和 starter 为准
 - 每个仓库自带 `AGENTS.md`（课程给 AI 助手的工作守则：做"助教"而非"解题器"）
 - 自己的代码写在包内对应模块；`notes.md` 记实现思路、踩坑和复盘
-- 每个作业独立 Python 环境（`uv venv && uv pip install -e .`），避免依赖冲突
+- 每个作业使用独立的 `uv` 环境；优先通过 `./scripts/setup_envs.sh [a1|a2|a3|a4|a5|all]` 安装，或按各作业 README 在作业根目录执行 `uv sync`，避免依赖冲突
 
 ## 课程内容与作业地图
 
@@ -176,8 +173,7 @@ A1、A2、A4、A5 都不是只填充已有文件里的几个 TODO：核心实现
 - **讲义交互版**：运行 `./scripts/serve_lectures.sh`，浏览器打开
   `http://localhost:8000/spring2025-lectures/index.html?trace=var/traces/lecture_01.json`
   （17 讲的 trace 已全部在本地）
-- **本地论文库**：`resources/papers/`，索引见 `README.md`
-- **本地速查表**：`resources/cheatsheets/`
+- **本地论文库**：`resources/papers/`，索引见 `resources/papers/README.md`
 
 ### 社区资源（参考用，别抄作业实现）
 - 中文精读笔记（GitHub 搜 "CS336"，有整门课的中文讲义+可运行推导）

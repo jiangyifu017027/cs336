@@ -1,11 +1,24 @@
 # 环境与资料状态
 
-> 最后检查：2026-11-21 02:05（WSL2 Ubuntu 26.04，RTX 5060 8GB）
-> 环境由每个作业独立的 `uv` venv 管理；用 `./scripts/check_envs.sh` 随时复查。
+> 本文区分 **当前 Mac 副本**与 **WSL2 已验证快照**，不把一台机器的结论直接套到另一台。
+> WSL2 最后检查：2026-11-21 02:05（Ubuntu 26.04，RTX 5060 8GB）。
+> 环境由每个作业独立的 `uv` venv 管理；需要复查时由用户运行 `./scripts/check_envs.sh`，作业规则不允许 AI 代为执行这些命令。
 
-## 总览
+## 当前 Mac 副本（2026-11-23）
 
-| 作业 | 环境 | 关键依赖 | 数据 | 状态 |
+- 工作路径：`/Users/mac/Developer/Personal/cs336`。
+- 已确认 `lectures/`、`resources/spring2025-lectures/` 和 `resources/papers/` 目录存在。
+- 当前没有 `resources/cheatsheets/` 和 `scratch/`；根 README 与学习说明已移除对应入口，需要时再恢复或创建。
+- A1–A5 的 Mac 作业环境、依赖与数据均未在本次复查，不能沿用 WSL2 的“可用”结论。
+- 用户可在项目根目录运行 `./scripts/check_envs.sh` 并把输出交给 AI；该脚本只检查环境，不代表课程学习进度。
+
+## WSL2 已验证快照（2026-11-21）
+
+以下环境细节、测试现象、数据规模和备份路径均属于 WSL2，除非之后另行验证，不表示当前 Mac 状态。
+
+### 环境总览
+
+| 作业 | 环境 | 关键依赖 | 数据 | WSL2 状态 |
 |------|------|----------|------|------|
 | A1 Basics | `assignments/a1-basics/.../.venv` | Python 3.12 / torch 2.11 cu128 | TinyStories + OWT，14GB | ✅ 可用；代码待实现 |
 | A2 Systems | `assignments/a2-systems/.../.venv` | Python 3.12 / torch 2.11 cu130 | 无外部数据 | ✅ 可用；待接 A1 实现 |
@@ -113,7 +126,7 @@ uv run pytest tests/ -q
 | 9 讲可执行幻灯片 + trace | `resources/spring2025-lectures/` | ✅ |
 | 本地看幻灯片 | `./scripts/serve_lectures.sh` | ✅ 已验证 200 |
 | 课程推荐论文 | `resources/papers/` | ✅ 74 篇 PDF，约 175MB |
-| 速查表 | `resources/cheatsheets/` | ✅ PyTorch/GPU/Triton/分布式/分词 |
+| 速查表 | `resources/cheatsheets/` | ✅ WSL2 快照记录存在；当前 Mac 副本缺失 |
 
 本地看可执行讲义：
 
@@ -136,7 +149,9 @@ uv run pytest tests/ -q
 6. **W&B / HuggingFace**：需要时再 `wandb login` / `hf auth login`，
    当前未配置（不影响本地测试）。
 
-## 备份
+## WSL2 备份（不适用于当前 Mac 路径）
+
+以下命令中的 `~/cs336`、`/mnt/d/` 和 `D:\CS336` 均属于 WSL2/Windows 备份流程，不要在当前 Mac 副本中直接照用。
 
 ```bash
 # 代码/笔记/资料同步到 D 盘工作副本（数据目录不重复搬；.git 不同步，D 盘是纯文件副本）
