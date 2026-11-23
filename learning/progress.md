@@ -6,7 +6,7 @@
 
 - 主要语言：简体中文。
 - 英语水平：CET-4 左右；技术术语保留英文，复杂原文配合中文解释。
-- 辅导方式：直觉和例子优先，再进入公式、shape 和实现；通过提问检查理解。
+- 辅导方式：直觉和例子优先，再进入公式、shape 和实现；**默认纯讲解，不通过提问检查理解**（2026-11-23 起）。
 - 内容忠实度：严格按课程讲义（`lecture_NN.py` / PDF）的顺序与内容讲解，不超前引入后续讲次概念；助教补充用【补充】标注（2026-11-22 用户明确要求，已写入 cs336-study skill）。
 - **交互方式（2026-11-23 用户明确要求）**：以**纯讲解**为主，不主动出检查题、不问回忆题、不要求复述。掌握度由用户自己判断，并在写作业过程中自我验证；AI 只负责把知识讲清楚、按 `learning/knowledge-map.md` 分类组织，方便用户记录掌握情况。用户主动要求出题时除外。
 - 每周可学习时间（2026-11-22 确认）：工作日 30 min/天，周末 4 h/天，约 10.5 h/周。
@@ -17,11 +17,11 @@
 ## 当前位置
 
 - **阶段**：P1 / A1 Basics（对应 plan.md 的 W1，进行中）。
-- **当前主题**：Lecture 01 — tokenization：token/byte、character、word 已学；**BPE 算法未学**。
+- **当前主题**：Lecture 01 — tokenization：L01-4～9 均已讲解；本次完成 BPE 训练、encode/decode 与 A1 增强要求概览，掌握度待用户自评。
 - **当前作业**：A1 尚未开始实现。
 - **环境**：A1 环境及数据已可用；这不表示课程任务已完成。
-- **下一次最小动作**：学 L01 的 BPE 段落，看懂 `train_bpe` 的“统计相邻对 → 合并最高频对”三步，不写作业代码。
-- **建议命令**：`/skill:cs336-study 继续第 1 讲，讲 BPE 的训练和使用流程`
+- **下一次最小动作**：阅读 A1 handout 的 tokenizer 部分，理解输入、输出与要求，不写实现。
+- **建议命令**：`/skill:cs336-english 读 A1 handout 的 tokenizer 部分`
 
 ## 学前诊断（2026-11-23 完成）
 
@@ -40,7 +40,7 @@
 
 | 讲次 | 主题 | 状态 | 掌握证据 / 遗留问题 |
 |---|---|---|---|
-| 01 | Overview, tokenization | 学习中 | 2026-11-23 两次：token/byte、character、word 三级均答对检查题；迁移题与复述连续两次跳过，BPE 未学 |
+| 01 | Overview, tokenization | 学习中 | L01-4～9 已讲解；2026-11-23 BPE 训练与使用采用纯讲解，掌握度待自评；L01-1～3 未讲 |
 | 02 | PyTorch, resource accounting | 未开始 | |
 | 03 | Architectures, hyperparameters | 未开始 | |
 | 04 | Mixture of experts | 未开始 | |
@@ -70,5 +70,6 @@
 
 ## 最近会话
 
+- [2026-11-23 L01：BPE 训练与使用](sessions/2026-11-23-lecture01-bpe.md)：完成 L01-9 纯讲解；未出检查题，掌握度待用户自评。
 - [2026-11-23 L01：character / word tokenization 与 BPE 动机](sessions/2026-11-23-lecture01-char-word.md)：回忆题与共同弱点答对；迁移题、复述均跳过。
 - [2026-11-23 L01：token 与 byte](sessions/2026-11-23-lecture01-token-byte.md)：3 道检查题全对（含理由补充），复述跳过。

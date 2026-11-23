@@ -42,7 +42,7 @@
 | L01-6 | character tokenization：Unicode 码点（`ord`/`chr`）、约 15 万字符、长尾字符浪费词表 | Mechanics | ✅ | ⬜ |
 | L01-7 | word tokenization：正则切分（含 GPT-2 regex）、词表随语料膨胀、`UNK` 与 perplexity 问题 | Mechanics | ✅ | ⬜ |
 | L01-8 | 压缩率 `compression ratio = num_bytes / num_tokens`，以及序列长度 ↔ 上下文长度/attention 二次开销 | Mechanics | ✅ | ⬜ |
-| L01-9 | BPE 动机与流程：常见序列一个 token、稀有序列多个 token；训练 = 统计相邻对 → 合并最高频对；A1 要求的增强（只遍历相关 merge、special tokens、pre-tokenization、速度） | Mechanics | 🟡 仅动机 | ⬜ |
+| L01-9 | BPE 动机与流程：常见序列一个 token、稀有序列多个 token；训练 = 统计相邻对 → 合并最高频对；A1 要求的增强（只遍历相关 merge、special tokens、pre-tokenization、速度） | Mechanics | ✅ | ⬜ |
 
 ---
 
@@ -205,4 +205,4 @@
 
 ## 更新记录
 
-- 2026-11-23：建立清单（条目来自 `resources/spring2025-lectures/` 的讲义标题与 PDF 大纲）。L01 已讲解 5 条（L01-4～L01-8），L01-9 仅讲了动机。
+- 2026-11-23：建立清单（条目来自 `resources/spring2025-lectures/` 的讲义标题与 PDF 大纲）。L01 已讲解 6 条（L01-4～L01-9）；掌握度均留待用户自评。
