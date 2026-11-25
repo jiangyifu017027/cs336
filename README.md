@@ -6,7 +6,7 @@
 - 课程主页（最新学期）：https://cs336.stanford.edu/
 - Spring 2025 归档版（作业/讲义公开）：https://stanford-cs336.github.io/spring2025/
 
-> 2026-11-25 按轻量计划清理：只保留主线 L01–L03 + A1，以及可选 A3 轻量版；概念线 L05/L07/L09/L10/L13/L15–L17 只学概念；L04/L06/L08/L11/L12/L14 与 A2/A4/A5 的本地资料已删除。学习计划见 [learning/plan.md](learning/plan.md)。
+> 2026-11-25 按轻量计划清理：只保留主线 L01–L03 + A1，以及可选 A3 轻量版；概念线 L05/L07/L09/L10/L13/L15–L17 只学概念；L04/L06/L08/L11/L12/L14 与 A2/A4/A5 的本地资料已删除。课程掌握进度表（含各模块重点，自行勾选）见 [learning/knowledge-map.md](learning/knowledge-map.md)。
 
 ## AI 中文学习助教（已配置）
 
@@ -104,7 +104,7 @@ A1、A3 都不是只填充已有文件里的几个 TODO：核心实现通常由�
 目录：`assignments/a3-scaling/assignment3-scaling/`
 
 - 内容：在预算内提交不同规模和超参数的训练实验，收集 loss，拟合 scaling law，外推更大规模的训练配置和最终 loss，并通过 API 提交预测。
-- 轻量版做法：跳过 API 提交与非学生不可用的 hosted 训练，只做本地小规模实验与拟合；详见 [learning/plan.md](learning/plan.md)。
+- 轻量版做法：跳过 API 提交与非学生不可用的 hosted 训练，只做本地小规模实验与拟合；勾选清单见 [learning/knowledge-map.md](learning/knowledge-map.md) 的 A3 部分。
 - 代码边界：没有待完成的 `NotImplementedError` 或空白 adapters，不需要补全服务端源码。
 - 入口：`examples/client_example.ipynb` 演示查询预算、提交实验、读取结果与最终提交。
 - 自己的文件：实验 notebook、拟合脚本和分析文件自行组织；`cs336_scaling/` 主要是已提供的训练 API 与调度基础设施。
@@ -116,7 +116,7 @@ A1、A3 都不是只填充已有文件里的几个 TODO：核心实现通常由�
 | A1 | L01–L03 | tokenizer、Transformer、训练组件与实际训练 | 主线，完整做 |
 | A3（可选轻量版） | L09、L11 | 本地小规模 scaling 实验、拟合与外推 | 主线走完后由用户决定 |
 
-先读 handout 明确要求，再学对应 lecture，最后独立实现。个人时间预算与滚动计划见 [learning/plan.md](learning/plan.md)；当前进度见 [learning/progress.md](learning/progress.md)。PDF 中的书面报告、评分细则与提交格式仍以对应 handout 为准。
+先读 handout 明确要求，再学对应 lecture，最后独立实现。当前进度与待办见 [learning/progress.md](learning/progress.md)，掌握进度表见 [learning/knowledge-map.md](learning/knowledge-map.md)。PDF 中的书面报告、评分细则与提交格式仍以对应 handout 为准。
 
 ## 算力与工程约定
 

@@ -12,11 +12,11 @@
 - 每周可学习时间（2026-11-22 确认）：工作日 30 min/天，周末 4 h/天，约 10.5 h/周。
 - 学习速度：偏慢（自述）；基础：AI 专业本科二年级，有简单 ML/DL 基础（自述）。
 - Python / PyTorch / 数学起点：已于 2026-11-23 完成诊断，三项均需从基础补起，详见下方记录。
-- **总体学习计划：见 `learning/plan.md`**（2026-11-25 重构为轻量版，原完整路线不再保留）：主线 L01–L03 + A1 完整做；L05/L07/L09/L10/L13/L15–L17 降为概念级纯讲解；L04/L06/L08/L11/L12/L14 与 A2/A4/A5 实现不在计划内；A3 可选轻量版。
+- **课程掌握进度表：见 `learning/knowledge-map.md`**（2026-11-25 起为唯一进度表，含各模块重点与 A1/A3 实践勾选；时间管理式学习计划 plan.md 已删除）。范围：主线 L01–L03 + A1 完整做；L05/L07/L09/L10/L13/L15–L17 概念级；A3 可选轻量版。
 
 ## 当前位置
 
-- **阶段**：P1 / A1 Basics（进行中）。
+- **阶段**：主线 A1 Basics（进行中）。
 - **当前主题**：A1 handout §2.1–2.2 — Unicode 码点、`repr` / `print`、UTF 编码与多字节字符；巩固 L01-5、L01-6，掌握度待用户自评。
 - **当前作业**：A1 尚未开始实现；tokenizer 部分的 7 个 Problem 已读题，unicode1、unicode2 共六个小问待用户独立作答。
 - **环境**：WSL2 的 A1 环境及数据已于 2026-11-21 验证可用；当前 Mac 副本待用户复查。这不表示课程任务已完成。
@@ -43,9 +43,9 @@
 
 > 精确的题号、分值与要求以 handout 为准；用户说"作业里还要做哪些"时，AI 应重新读 handout 对应章节并补全此清单，不凭记忆列题。
 
-### 本周计划检查点（W2）
+### 当前模块检查点
 
-自认为说清 BPE 训练在做什么（L01-9 勾 🟢，不要求写代码）；自评状态待用户填写。
+L01（基础与分词）收尾：自认为说清 BPE 训练在做什么后，在 `knowledge-map.md` 把 L01-9 勾为 🟢，其余 L01 条目按实际自评勾选。
 
 ## 学前诊断（2026-11-23 完成）
 
@@ -56,31 +56,27 @@
 - [x] 数学：矩阵乘法 shape、softmax、交叉熵均不会 → 零基础。用到时以【补充】即时补，不单独开数学课。
 - [x] 学习投入：10.5 h/周（2026-11-22 已确认）；A1 目标完成时长未设定。
 
-校准结论：三项起点均低于 plan.md 的预设下限，但课程本身覆盖 PyTorch（L02）和所需数学；按 plan.md 风险规则，真实速度以 P1 前两周数据为准再校准，暂不重排计划。
+校准结论：三项起点均较低，但课程本身覆盖 PyTorch（L02）和所需数学；学习速度以实际进展为准，不预设已掌握。
 
 ## 讲次进度
 
 状态含义：`未开始` → `学习中` → `已初学，待复习` → `已掌握`。掌握状态由用户自评 + 作业证据决定（2026-11-23 起不再靠课堂提问判定）；逐条知识点的勾选见 `learning/knowledge-map.md`。
 
-| 讲次 | 主题 | 状态 | 掌握证据 / 遗留问题 |
-|---|---|---|---|
-| 01 | Overview, tokenization | 学习中 | L01-4～9 已讲解；2026-11-23 BPE 训练与使用采用纯讲解，掌握度待自评；L01-1～3 未讲 |
-| 02 | PyTorch, resource accounting | 未开始 | |
-| 03 | Architectures, hyperparameters | 未开始 | |
-| 04 | Mixture of experts | 未开始 | |
-| 05 | GPUs | 未开始 | |
-| 06 | Kernels, Triton | 未开始 | |
-| 07 | Parallelism basics | 未开始 | |
-| 08 | Parallelism | 未开始 | |
-| 09 | Scaling laws basics | 未开始 | |
-| 10 | Inference | 未开始 | |
-| 11 | Scaling laws details | 未开始 | |
-| 12 | Evaluation | 未开始 | |
-| 13 | Data | 未开始 | |
-| 14 | Data filtering & dedup | 未开始 | |
-| 15 | Alignment: SFT / RLHF | 未开始 | |
-| 16 | Alignment: RL | 未开始 | |
-| 17 | Reasoning RL mechanics | 未开始 | |
+| 讲次 | 主题 | 深度 | 状态 | 掌握证据 / 遗留问题 |
+|---|---|---|---|---|
+| 01 | Overview, tokenization | 主线 | 学习中 | L01-4～9 已讲解；掌握度待用户在 knowledge-map.md 自评；L01-1～3 未讲 |
+| 02 | PyTorch, resource accounting | 主线 | 未开始 | |
+| 03 | Architectures, hyperparameters | 主线 | 未开始 | |
+| 05 | GPUs | 概念 | 未开始 | |
+| 07 | Parallelism basics | 概念 | 未开始 | |
+| 09 | Scaling laws basics | 概念 | 未开始 | |
+| 10 | Inference | 概念 | 未开始 | |
+| 13 | Data | 概念 | 未开始 | |
+| 15 | Alignment: SFT / RLHF | 概念 | 未开始 | |
+| 16 | Alignment: RL | 概念 | 未开始 | |
+| 17 | Reasoning RL mechanics | 概念 | 未开始 | |
+
+> 逐条掌握度以 `learning/knowledge-map.md` 为准；L04/L06/L08/L11/L12/L14 不在计划内，不列。
 
 ## 作业进度
 

@@ -37,9 +37,8 @@
 ```text
 learning/
 ├── README.md             # 本说明
-├── plan.md               # 总体计划、时间预算和滚动周计划（轻量版：主线 L01–L03 + A1 与概念线）
-├── progress.md           # 当前学习位置、讲次/作业状态和下一步
-├── knowledge-map.md      # 逐条知识点；AI 标已讲解，用户自评掌握度
+├── progress.md           # 当前学习位置、待办清单、讲次/作业状态和下一步
+├── knowledge-map.md      # 课程掌握进度表（唯一）：各模块重点 + 逐条勾选 + A1/A3 实践清单
 ├── questions.md          # 未解决与已解决问题
 ├── vocabulary.md         # 结合课程语境的英文术语表
 ├── reading/              # 长篇英文资料的分次阅读记录
