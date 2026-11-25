@@ -29,3 +29,11 @@
 | word-based tokenization | 词级分词 | 按词切分后映射为整数；词表随语料膨胀，未见词变 UNK | L01 | 已讲解 |
 | UNK token | 未登录词标记 | 训练时未出现的词被压成的特殊符号；会让 perplexity 计算受影响 | L01 | 已讲解 |
 | perplexity | 困惑度 | 语言模型的教科书评测指标；词表/UNK 处理变化会影响其可比性 | L01 | 已讲解 |
+| lexicographically greater | 字典序更大 | BPE 训练频率并列时的决胜规则：取字典序更大的 pair；handout 例子 `max([("A","B"),("A","C"),("B","ZZ"),("BA","A")])` 得 `('BA','A')` | A1 handout §2.4 | 已讲解 |
+| replacement character (U+FFFD) | 替换字符  | Unicode 官方替换字符；decode 遇到非法字节序列时用它占位（`errors='replace'`） | A1 handout §2.6.2 | 已讲解 |
+| deliverable | 提交物 | 每道 Problem 要求交付的东西：一两句话回答 / 代码 / 序列化文件 | A1 handout 全部 Problem 框 | 已讲解 |
+| serialize | 序列化 | 把 vocab、merges 等对象保存到磁盘，之后可重新加载 | A1 handout §2.5 | 已讲解 |
+| throughput | 吞吐量 | 单位时间处理的量（如 bytes/s）；用来推算 tokenize 大语料的总耗时 | A1 handout §2.7 | 已讲解 |
+| lazily yield / generator | 惰性产生 / 生成器 | 不一次性读入全部文本，逐段产出 token ID，使内存占用恒定 | A1 handout §2.6.1 | 已讲解 |
+| hard boundary | 硬边界 | special token 把文本切成互不影响的段，BPE 合并不允许跨越 | A1 handout §2.5 | 已讲解 |
+| downscaling / debug dataset | 降规模 / 调试数据集 | 先用小数据（如 TinyStories 验证集 22K 篇）跑通并暴露瓶颈，再上全量 | A1 handout §2.5 | 已讲解 |

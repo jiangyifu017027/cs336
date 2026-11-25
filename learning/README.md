@@ -38,7 +38,7 @@
 ```text
 learning/
 ├── README.md             # 本说明
-├── plan.md               # 总体计划、时间预算和滚动周计划
+├── plan.md               # 总体计划、时间预算和滚动周计划（轻量版：主线 L01–L03 + A1 与概念线）
 ├── progress.md           # 当前学习位置、讲次/作业状态和下一步
 ├── knowledge-map.md      # 逐条知识点；AI 标已讲解，用户自评掌握度
 ├── questions.md          # 未解决与已解决问题

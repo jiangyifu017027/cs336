@@ -3,28 +3,27 @@
 > 本文区分 **当前 Mac 副本**与 **WSL2 已验证快照**，不把一台机器的结论直接套到另一台。
 > WSL2 最后检查：2026-11-21 02:05（Ubuntu 26.04，RTX 5060 8GB）。
 > 环境由每个作业独立的 `uv` venv 管理；需要复查时由用户运行 `./scripts/check_envs.sh`，作业规则不允许 AI 代为执行这些命令。
+> 2026-11-25 按轻量计划清理：A2/A4/A5 目录与 L04/L06/L08/L11/L12/L14 讲义已从 Mac 副本删除；WSL2 侧旧副本仍存在，但不再维护。
 
 ## 当前 Mac 副本（2026-11-23）
 
 - 工作路径：`/Users/mac/Developer/Personal/cs336`。
 - 已确认 `lectures/`、`resources/spring2025-lectures/` 和 `resources/papers/` 目录存在。
 - 当前没有 `resources/cheatsheets/` 和 `scratch/`；根 README 与学习说明已移除对应入口，需要时再恢复或创建。
-- A1–A5 的 Mac 作业环境、依赖与数据均未在本次复查，不能沿用 WSL2 的“可用”结论。
+- A1、A3 的 Mac 作业环境、依赖与数据均未复查，不能沿用 WSL2 的“可用”结论。
 - 用户可在项目根目录运行 `./scripts/check_envs.sh` 并把输出交给 AI；该脚本只检查环境，不代表课程学习进度。
 
 ## WSL2 已验证快照（2026-11-21）
 
 以下环境细节、测试现象、数据规模和备份路径均属于 WSL2，除非之后另行验证，不表示当前 Mac 状态。
+A2/A4/A5 的 WSL2 环境当时验证为可用，但按 2026-11-25 轻量计划不再维护（对应作业目录已从 Mac 副本删除）。
 
 ### 环境总览
 
 | 作业 | 环境 | 关键依赖 | 数据 | WSL2 状态 |
 |------|------|----------|------|------|
 | A1 Basics | `assignments/a1-basics/.../.venv` | Python 3.12 / torch 2.11 cu128 | TinyStories + OWT，14GB | ✅ 可用；代码待实现 |
-| A2 Systems | `assignments/a2-systems/.../.venv` | Python 3.12 / torch 2.11 cu130 | 无外部数据 | ✅ 可用；待接 A1 实现 |
 | A3 Scaling | `assignments/a3-scaling/.../.venv` | Python 3.12 / JAX 0.9.1 CUDA13 | 仅 isoflops 曲线 | ✅ 环境可用；数据需 Modal/API |
-| A4 Data | `assignments/a4-data/.../.venv` | Python 3.12 / torch 2.11 cu130 | offline 资产约 3GB | ✅ 可用；完整 crawl 未下 |
-| A5 Alignment | `assignments/a5-alignment/.../.venv` | Python 3.12 / torch 2.10 cu129 | 86MB 数据集 | ✅ 可用；大模型需云 GPU |
 
 ## 一键命令
 
@@ -34,10 +33,7 @@
 
 # 安装/更新某个作业
 ./scripts/setup_envs.sh a1
-./scripts/setup_envs.sh a2
 ./scripts/setup_envs.sh a3      # 自动带 --extra server
-./scripts/setup_envs.sh a4
-./scripts/setup_envs.sh a5
 
 # 全部
 ./scripts/setup_envs.sh all
@@ -61,20 +57,6 @@ uv run pytest tests/ -q
   这是 starter 代码的正常状态，不是环境问题
 - 数据：`data/` 下 TinyStories train/valid + OWT train/valid，共约 14GB
 
-### A2 — Systems
-
-- Python 3.12.16，`torch 2.11.0+cu130`，CUDA 13.0
-- GPU bf16 matmul 检查通过
-- 单卡可以跑 attention/benchmark 相关部分；DDP/FSDP 测试需要多卡
-- `cs336-basics` 目前仍指向官方的 `./cs336-basics` 占位包。
-  完成 A1 后，把 `pyproject.toml` 的 `[tool.uv.sources]` 改成：
-
-  ```toml
-  cs336-basics = { path = "../../a1-basics/assignment1-basics", editable = true }
-  ```
-
-  然后重新 `uv sync`。
-
 ### A3 — Scaling
 
 - Python 3.12.16，JAX 0.9.1，`jax.devices()` 能看到 `CudaDevice(id=0)`
@@ -88,45 +70,15 @@ uv run pytest tests/ -q
   当前 WSL 没有装 Postgres，所以 7 个测试会报 `INTERNAL_API_KEY` / DB 连接错误；
   这不影响 JAX 环境和 `cs336_scaling` 代码本身
 
-### A4 — Data
-
-- Python 3.12.16，`torch 2.11.0+cu130`，CUDA 13.0
-- `fasttext`、`resiliparse`、`fastwarc`、`mmh3`、`nltk` 导入正常
-- `local-shared-data/` 已放好 offline 资产（已校验文件大小/可加载）：
-  Paloma tokenized validation（19MB）、CC example WARC（778MB）/WET（60MB）、
-  `lid.176.bin`（125MB）、Dolma hatespeech（946MB）/NSFW（946MB）fastText 模型
-- 官方 `scripts/download_data.py --offline-only` 会因 `SUNET_ID` 未填而拒绝 import；
-  本仓库用 `scripts/fetch_a4_offline.py` 下载同样的文件，不改课程 starter
-- 完整 2500 个 WET + wiki URL 管线需要先实现 `is_english` 并配置 Modal；
-  当前未下载（数据量很大）
-
-### A5 — Alignment
-
-- Python 3.12，torch 2.10.0+cu129 / CUDA 12.9，GPU bf16 matmul 通过
-- 默认依赖（不含 `flash-attn` / `vllm` 的 `gpu` extra）
-- 官方 `uv.lock` 的 `gpu` extra 与 macOS arm64 环境冲突，直接 `uv sync`
-  会重解析失败；本仓库用 `uv sync --frozen` 安装默认依赖
-- 26 个测试可正常 collect；starter 未实现时按预期 `NotImplementedError`
-- `data/` 已有 gsm8k、mmlu、hh、simple_safety_tests、alpaca_eval，约 86MB
-- 单元测试可跑 CPU；真正 SFT/GRPO 训练需要更大显存或 Modal/云 GPU
-- `flash-attn` / `vllm` 需要时再装：
-
-  ```bash
-  uv sync --frozen --extra gpu
-  ```
-
-  8GB 卡不建议本地装 vLLM 大模型；优先用云。
-
 ## 资料
 
 | 资料 | 位置 | 状态 |
 |------|------|------|
-| 讲义索引 + 17 讲笔记模板 | `lectures/` | ✅ |
-| 8 讲 PDF | `resources/spring2025-lectures/nonexecutable/` | ✅ |
-| 9 讲可执行幻灯片 + trace | `resources/spring2025-lectures/` | ✅ |
+| 讲义索引 + 11 讲笔记模板 | `lectures/` | ✅（仅保留轻量计划的 11 讲） |
+| 6 讲 PDF | `resources/spring2025-lectures/nonexecutable/` | ✅（L03/05/07/09/15/16） |
+| 5 讲可执行幻灯片 + trace | `resources/spring2025-lectures/` | ✅（L01/02/10/13/17） |
 | 本地看幻灯片 | `./scripts/serve_lectures.sh` | ✅ 已验证 200 |
-| 课程推荐论文 | `resources/papers/` | ✅ 74 篇 PDF，约 175MB |
-| 速查表 | `resources/cheatsheets/` | ✅ WSL2 快照记录存在；当前 Mac 副本缺失 |
+| 课程推荐论文 | `resources/papers/` | ✅ 55 篇 PDF，约 110MB（2026-11-25 按轻量计划精选，原 74 篇） |
 
 本地看可执行讲义：
 
@@ -139,14 +91,9 @@ uv run pytest tests/ -q
 
 1. **A1 代码本身**：`cs336_basics/` 仍是 starter，需要按 handout 实现 BPE、
    Transformer、优化器和训练循环。环境已就绪，直接 `uv run pytest` 驱动开发。
-2. **A2 的 `cs336-basics`**：等 A1 有实现后替换占位包，再跑 A2 的测试。
-3. **A3 数据/API**：没有学生 API key；本地全量 tokenized DCLM 不现实。
+2. **A3 数据/API**（可选作业）：没有学生 API key；本地全量 tokenized DCLM 不现实。
    先把 A3 当作 scaling law 阅读 + 小规模本地实验，正式跑用云。
-4. **A4 完整数据**：先实现 `cs336_data.wet_files.is_english`，再决定是否
-   下载 2500 个 WET；当前 offline 资产足够跑单测和 pipeline 调试。
-5. **A5 大模型**：默认环境只保证单测；Llama/Qwen 权重、vLLM、flash-attn
-   按需从云上跑，别在本机 8GB 卡上硬塞。
-6. **W&B / HuggingFace**：需要时再 `wandb login` / `hf auth login`，
+3. **W&B / HuggingFace**：需要时再 `wandb login` / `hf auth login`，
    当前未配置（不影响本地测试）。
 
 ## WSL2 备份（不适用于当前 Mac 路径）
@@ -166,15 +113,16 @@ git push
 ```
 
 > `D:\CS336` 是 Windows 侧备份；`~/cs336` 是主工作副本。
-> 大数据（A1 data、A4 local-shared-data）不进 git，但已 rsync 到 D。
+> 大数据（A1 data）不进 git，但已 rsync 到 D。
 
 远端（2026-11-22 重建）：
 
 | remote | 地址 | 说明 |
 |---|---|---|
-| `origin` | `https://github.com/jiangyifu017027/cs336.git` | GitHub **私有**仓库，267 作业文件 + learning 笔记 |
+| `origin` | `https://github.com/jiangyifu017027/cs336.git` | GitHub **私有**仓库 |
 
-- 入库内容：`assignments/`、`learning/`、`scripts/`、`.agents/`、顶层文档，共 287 文件 / 83M。
-- 不入库：数据集与虚拟环境（40G），以及 `resources/`、`lectures/` 课程材料（`.gitignore` 排除，仅本地与 D 盘保留）。
+- 入库内容：`assignments/`（现仅 A1、A3）、`learning/`、`scripts/`、`.agents/`、顶层文档。
+- 不入库：数据集与虚拟环境（`data/`、`.venv/` 等，体积大且可重新下载）。
+- 课程材料（`resources/`、`lectures/`）：自 2026-11-25 起入库，作为私有仓库备份（原“仅本地保留”策略已调整）。
 - 旧历史已废弃；改动前的完整快照：`/mnt/d/cs336-snapshots/cs336-20261122-2223.bundle`（可用 `git clone` 直接恢复）。
 - 凭证由 VS Code 提供（`GIT_ASKPASS`），无需在仓库里保存 token。

@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # Print the state of every assignment environment. Read-only.
+# 2026-11-25 轻量计划：只检查 A1（主线）与 A3（可选轻量版）。
 set -uo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 printf '%-4s %-10s %-42s %s\n' "#" "状态" "Python / 关键包" "路径"
-for n in 1 2 3 4 5; do
+for n in 1 3; do
   dir=$(echo "$ROOT"/assignments/a${n}-*/*/)
   dir="${dir%/}"
   if [ ! -x "$dir/.venv/bin/python" ]; then
@@ -30,7 +31,7 @@ PY
 )
   status="OK"
   case "$n" in
-    1|2|4|5) [[ "$info" == *"no-torch"* ]] && status="待补" ;;
+    1) [[ "$info" == *"no-torch"* ]] && status="待补" ;;
     3) [[ "$info" != *"jax"* ]] && status="待补" ;;
   esac
   printf '%-4s %-10s %-42s %s\n' "a$n" "$status" "$info" "$dir"
