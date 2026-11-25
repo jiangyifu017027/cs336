@@ -17,17 +17,17 @@
 ## 当前位置
 
 - **阶段**：主线 A1 Basics（进行中）。
-- **当前主题**：A1 handout §2.1–2.2 — Unicode 码点、`repr` / `print`、UTF 编码与多字节字符；巩固 L01-5、L01-6，掌握度待用户自评。
-- **当前作业**：A1 尚未开始实现；tokenizer 部分的 7 个 Problem 已读题，unicode1、unicode2 共六个小问待用户独立作答。
+- **当前主题**：BPE tokenizer 实现（handout §2.3–2.7）— 训练三步、编码/解码、special tokens、效率手段等基础知识已于 2026-11-25 讲解；实现由用户独立完成。
+- **当前作业**：unicode1、unicode2 共六个小问待用户独立作答；train_bpe（15 分）与 tokenizer（15 分）待用户实现。
 - **环境**：WSL2 的 A1 环境及数据已于 2026-11-21 验证可用；当前 Mac 副本待用户复查。这不表示课程任务已完成。
-- **下一次最小动作**：在 Python 解释器中运行 handout §2.1 已给出的表达式并比较 §2.2 的编码结果，独立写出六个小问的简短草稿，可交给 AI review。
-- **建议命令**：遵守作业仓库规则，由用户自行运行解释器实验；AI 不代为执行。
+- **下一次最小动作**：用户自己实现 train_bpe 并通过 `tests/test_train_bpe.py`；卡顿时可提问，AI 只答疑、诊断、review，不写代码。
+- **建议命令**：遵守作业仓库规则，由用户自行运行解释器实验与 pytest；AI 不代为执行。
 
 ## 待办清单（AI 每次会话更新，2026-11-25 起）
 
 ### 下一步最小动作
 
-在 Python 解释器中运行 A1 handout §2.1 已给出的表达式并比较 §2.2 的编码结果，独立写出 unicode1/unicode2 六个小问的简短草稿，可交给 AI review。
+BPE 实现基础知识已讲完；用户自己实现 train_bpe 并通过 `tests/test_train_bpe.py`（unicode1/unicode2 六小问可并行完成，写完可交 AI review）。
 
 ### 当前作业剩余题目（A1 Basics，tokenizer 部分）
 
@@ -35,9 +35,10 @@
 
 - [ ] unicode1：书面题，六个小问待用户独立作答（§2.1–2.2 前置概念已讲解）
 - [ ] unicode2：书面题，同上
-- [ ] BPE 训练相关 Problem：代码题，未开始（L01-9 已讲解）
-- [ ] BPE encode/decode 相关 Problem：代码题，未开始
-- [ ] special tokens / 流式编码相关 Problem：未开始
+- [ ] train_bpe：代码题 15 分，基础知识（训练三步、tie-breaking、special tokens、效率手段）已讲解，待用户实现
+- [ ] train_bpe_tinystories / train_bpe_expts_owt：实验题，依赖 train_bpe 完成
+- [ ] tokenizer（encode/decode/encode_iterable）：代码题 15 分，编码镜像过程与 U+FFFD 解码已讲解，待用户实现
+- [ ] tokenizer_experiments：实验题 4 分，依赖前两者
 - [ ] A1 模型部分（Transformer 各模块）：未开始，等 L02/L03
 - [ ] A1 训练部分（优化器、训练循环）：未开始
 
@@ -64,7 +65,7 @@ L01（基础与分词）收尾：自认为说清 BPE 训练在做什么后，在
 
 | 讲次 | 主题 | 深度 | 状态 | 掌握证据 / 遗留问题 |
 |---|---|---|---|---|
-| 01 | Overview, tokenization | 主线 | 学习中 | L01-4～9 已讲解；掌握度待用户在 knowledge-map.md 自评；L01-1～3 未讲 |
+| 01 | Overview, tokenization | 主线 | 学习中 | L01-1～9 已全部讲解；掌握度待用户在 knowledge-map.md 自评 |
 | 02 | PyTorch, resource accounting | 主线 | 未开始 | |
 | 03 | Architectures, hyperparameters | 主线 | 未开始 | |
 | 05 | GPUs | 概念 | 未开始 | |
@@ -87,6 +88,14 @@ L01（基础与分词）收尾：自认为说清 BPE 训练在做什么后，在
 | A3 Scaling | 可选轻量版 | 主线走完后由用户决定；只做本地小实验，注意非学生 API 与数据限制 |
 | A4 Data | 不在计划内 | 仅 L13 概念级覆盖 |
 | A5 Alignment | 不在计划内 | 仅 L15–L17 概念级覆盖；以后若想补做，大模型训练优先考虑云 GPU |
+
+## 后续学习目标（CS336 之后）
+
+- **Stanford CS329Z — Engineering AI Agents（Fall 2025）**：理解 Claude Code / Pi 这类 coding agent 的工作机制（harness / scaffold，即模型外面的工程层）。官网 cs329z.stanford.edu，幻灯片与视频公开。2026-11-25 用户确定加入。
+  - 重点讲次：第 3–5 讲（tool use / function calling 与 MCP、框架与 harness 对比 mini-SWE-agent / OpenHands / Pi、ReAct / CodeAct / compaction 等设计模式）、第 11 讲（拆解 SWE-agent / Claude Code / OpenHands 架构）。
+  - 前置：CS336 主线（transformer、推理、post-training）学完后开始。
+  - 配套动手（可选）：自己写一个最小 agent + 读一个开源 harness（OpenHands 或 Pi）。
+  - 备选补充：Berkeley Agentic AI MOOC（F25，agenticai-learning.org/f25），偏 agentic RL / post-training 研究，需要时再看。
 
 ## 最近会话
 

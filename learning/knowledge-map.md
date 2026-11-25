@@ -40,9 +40,9 @@
 
 | # | 知识点（重点） | 讲解 | 掌握 |
 |---|---|---|---|
-| L01-1 | 课程定位：Mechanics / Mindset / Intuitions 三类知识，哪些能从小模型迁移到前沿 | — | ⬜ |
-| L01-2 | 效率框架：`accuracy = efficiency × resources`，给定 compute+data 预算下最大化效率 | — | ⬜ |
-| L01-3 | 语言模型演进：pre-neural → neural → foundation models → scaling → 开放模型 | — | ⬜ |
+| L01-1 | 课程定位：Mechanics / Mindset / Intuitions 三类知识，哪些能从小模型迁移到前沿 | ✅ | ⬜ |
+| L01-2 | 效率框架：`accuracy = efficiency × resources`，给定 compute+data 预算下最大化效率 | ✅ | ⬜ |
+| L01-3 | 语言模型演进：pre-neural → neural → foundation models → scaling → 开放模型 | ✅ | ⬜ |
 | L01-4 | tokenizer 接口：`encode`/`decode` 往返、`vocabulary size`；模型输入是 token ID | ✅ | ⬜ |
 | L01-5 | **byte tokenization**：UTF-8 编码、0–255、1 byte = 1 token、词表 256 | ✅ | ⬜ |
 | L01-6 | **character tokenization**：Unicode 码点（`ord`/`chr`）、约 15 万字符、长尾浪费词表 | ✅ | ⬜ |
@@ -232,4 +232,5 @@
 ## 更新记录
 
 - 2026-11-25：改为唯一课程进度表。范围限定为轻量计划（主线 L01–L03 + A1；概念线 L05/L07/L09/L10/L13/L15–L17；可选 A3），删除不在计划内的讲次条目；每个模块补充"本模块重点"说明；A1/A3 增加实践勾选清单。时间管理式的学习计划（plan.md）已删除。
+- 2026-11-25：L01 补讲 L01-1～L01-3（课程定位、效率框架、LM 演进），模块 A 全部 9 条均已讲解；掌握度留待用户自评。
 - 2026-11-23：建立清单。L01 已讲解 6 条（L01-4～L01-9）；掌握度均留待用户自评。

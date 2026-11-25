@@ -37,3 +37,9 @@
 | lazily yield / generator | 惰性产生 / 生成器 | 不一次性读入全部文本，逐段产出 token ID，使内存占用恒定 | A1 handout §2.6.1 | 已讲解 |
 | hard boundary | 硬边界 | special token 把文本切成互不影响的段，BPE 合并不允许跨越 | A1 handout §2.5 | 已讲解 |
 | downscaling / debug dataset | 降规模 / 调试数据集 | 先用小数据（如 TinyStories 验证集 22K 篇）跑通并暴露瓶颈，再上全量 | A1 handout §2.5 | 已讲解 |
+| out-of-vocabulary (OOV) | 未登录词 | 词表覆盖不到的词；word-level 分词的痛点，byte-level 用 256 字节兜底解决 | A1 handout §2.3 | 已讲解 |
+| pre-token | 预词元 | pre-tokenization 切出的粗粒度片段；BPE 合并只在 pre-token 内部进行 | A1 handout §2.4 | 已讲解 |
+| multiprocessing / parallelize | 多进程 / 并行化 | 用内置库 multiprocessing 并行 pre-tokenization（BPE 训练的主要瓶颈）；合并步骤在 Python 里无法并行 | A1 handout §2.5 | 已讲解 |
+| chunk boundary | 块边界 | 切分语料的分界；并行预分词要求边界落在 special token 开头；流式编码要求 token 不跨块 | A1 handout §2.5–2.6 | 已讲解 |
+| incremental update | 增量更新 | 一次 merge 后只有与被合并对重叠的 pair 计数会变，据此建索引增量更新而非全量重数 | A1 handout §2.5 | 已讲解 |
+| profiling | 性能分析 | 用 cProfile / py-spy 找出实现中的耗时瓶颈再针对性优化 | A1 handout §2.5 | 已讲解 |
