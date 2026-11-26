@@ -6,9 +6,9 @@
 
 - 主要语言：简体中文。
 - 英语水平：CET-4 左右；技术术语保留英文，复杂原文配合中文解释。
-- 协作方式（2026-11-25 起）：AI 只负责**记录进度 + 告诉用户接下来做什么（含作业剩余题目）**，不主动提问、不做理解检查、不要求复述；概念讲解仅在用户主动要求时进行（cs336-study）。日常主入口是 cs336-review。
+- 协作方式（2026-11-25 起；2026-11-26 扩大）：AI 负责**记录进度 + 告诉用户接下来做什么（含作业剩余题目）**，不主动提问、不做理解检查、不要求复述；概念讲解仅在用户主动要求时进行（cs336-study）。**2026-11-26 起：用户口述核心思路，AI 直接实现/修改作业代码并跑测试验证**（用户为业余自学者、非注册学生，明确决定）。日常主入口是 cs336-review。
 - 内容忠实度：严格按课程讲义（`lecture_NN.py` / PDF）的顺序与内容讲解，不超前引入后续讲次概念；助教补充用【补充】标注（2026-11-22 用户明确要求，已写入 cs336-study skill）。
-- 掌握度：由用户自评，并在写作业过程中自我验证；AI 只负责讲清知识、维护 `learning/knowledge-map.md` 的“已讲解”标记。
+- 掌握度：由用户自评，并在写作业过程中自我验证；AI 只负责讲清知识、维护 `learning/knowledge-map.md` 的“已讲解”标记。**2026-11-26 起 AI 按用户思路代写的代码不作为掌握度证据**（不伪造进度）。
 - 每周可学习时间（2026-11-22 确认）：工作日 30 min/天，周末 4 h/天，约 10.5 h/周。
 - 学习速度：偏慢（自述）；基础：AI 专业本科二年级，有简单 ML/DL 基础（自述）。
 - Python / PyTorch / 数学起点：已于 2026-11-23 完成诊断，三项均需从基础补起，详见下方记录。
@@ -17,27 +17,27 @@
 ## 当前位置
 
 - **阶段**：主线 A1 Basics（进行中）。
-- **当前主题**：BPE tokenizer 实现（handout §2.3–2.7）— 训练三步、编码/解码、special tokens、效率手段等基础知识已于 2026-11-25 讲解；实现由用户独立完成。
-- **当前作业**：unicode1、unicode2 共六个小问待用户独立作答；train_bpe（15 分）与 tokenizer（15 分）待用户实现。
-- **环境**：WSL2 的 A1 环境及数据已于 2026-11-21 验证可用；当前 Mac 副本待用户复查。这不表示课程任务已完成。
-- **下一次最小动作**：用户自己实现 train_bpe 并通过 `tests/test_train_bpe.py`；卡顿时可提问，AI 只答疑、诊断、review，不写代码。
-- **建议命令**：遵守作业仓库规则，由用户自行运行解释器实验与 pytest；AI 不代为执行。
+- **当前主题**：BPE tokenizer 实现（handout §2.3–2.7）— 训练三步、编码/解码、special tokens、效率手段等基础知识已讲解（2026-11-25 首讲 + 复讲）。
+- **当前作业**：unicode1、unicode2 共六个小问待作答；train_bpe（15 分）与 tokenizer（15 分）待实现。
+- **环境**：WSL2 的 A1 环境及数据已于 2026-11-21 验证可用；当前 Mac 副本待复查。这不表示课程任务已完成。
+- **下一次最小动作**（2026-11-26 新模式）：用户口述 train_bpe 实现思路 → AI 编写代码并运行 `tests/test_train_bpe.py` 验证 → AI 逐段解释实现。
+- **命令执行**：2026-11-26 起 AI 可直接运行作业相关命令与 pytest（用户授权，见根 AGENTS.md 作业边界）；用户计划用手机端（Paseo/web）指挥，见 sessions/2026-11-26 记录。
 
 ## 待办清单（AI 每次会话更新，2026-11-25 起）
 
 ### 下一步最小动作
 
-BPE 实现基础知识已讲完；用户自己实现 train_bpe 并通过 `tests/test_train_bpe.py`（unicode1/unicode2 六小问可并行完成，写完可交 AI review）。
+用户口述 train_bpe 实现思路 → AI 实现并跑通 `tests/test_train_bpe.py` → AI 逐段解释实现（unicode1/unicode2 六小问可并行；书面题建议用户自己答，AI 可核对讲解）。
 
 ### 当前作业剩余题目（A1 Basics，tokenizer 部分）
 
 按 handout 第 2 节顺序（共 7 题 42 分，已读题未实现）：
 
-- [ ] unicode1：书面题，六个小问待用户独立作答（§2.1–2.2 前置概念已讲解）
+- [ ] unicode1：书面题，六个小问待作答（§2.1–2.2 前置概念已讲解；答完可让 AI 核对讲解）
 - [ ] unicode2：书面题，同上
-- [ ] train_bpe：代码题 15 分，基础知识（训练三步、tie-breaking、special tokens、效率手段）已讲解，待用户实现
+- [ ] train_bpe：代码题 15 分，基础知识（训练三步、tie-breaking、special tokens、效率手段）已讲解；等用户口述思路后由 AI 实现
 - [ ] train_bpe_tinystories / train_bpe_expts_owt：实验题，依赖 train_bpe 完成
-- [ ] tokenizer（encode/decode/encode_iterable）：代码题 15 分，编码镜像过程与 U+FFFD 解码已讲解，待用户实现
+- [ ] tokenizer（encode/decode/encode_iterable）：代码题 15 分，编码镜像过程与 U+FFFD 解码已讲解；train_bpe 完成后由 AI 按用户思路实现
 - [ ] tokenizer_experiments：实验题 4 分，依赖前两者
 - [ ] A1 模型部分（Transformer 各模块）：未开始，等 L02/L03
 - [ ] A1 训练部分（优化器、训练循环）：未开始
@@ -99,6 +99,8 @@ L01（基础与分词）收尾：自认为说清 BPE 训练在做什么后，在
 
 ## 最近会话
 
+- [2026-11-26 协作模式变更：AI 直接实现作业代码](sessions/2026-11-26-collab-mode-change.md)：用户（业余自学者）决定改为"口述思路 → AI 实现并验证"；AGENTS.md、skill、进度档案均已同步；手机端走 Paseo + GitHub。
+- [2026-11-25 L01 复讲：BPE](sessions/2026-11-25-lecture01-bpe-revisit.md)：用户主动要求重点复讲 L01-9；含手算例子与 A1 增强要求；未提问，掌握度待自评。
 - [2026-11-23 A1 handout：Unicode 书面题前置概念](sessions/2026-11-23-a1-unicode-concepts.md)：巩固 L01-5/6；未给答案、未出检查题，六个小问待用户独立完成。
 - [2026-11-23 A1 handout：tokenizer 题意卡](sessions/2026-11-23-a1-handout-tokenizer.md)：Section 2 共 7 题 42 分的要求与字面规则整理；未出检查题。
 - [2026-11-23 L01：BPE 训练与使用](sessions/2026-11-23-lecture01-bpe.md)：完成 L01-9 纯讲解；未出检查题，掌握度待用户自评。
